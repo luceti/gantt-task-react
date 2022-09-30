@@ -65,6 +65,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   onDelete,
   onSelect,
   onExpanderClick,
+  onChangeTask,
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const taskListRef = useRef<HTMLDivElement>(null);
@@ -164,6 +165,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     rtl,
     scrollX,
     onExpanderClick,
+    onChangeTask,
   ]);
 
   useEffect(() => {
@@ -321,7 +323,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   /**
    * Handles arrow keys events and transform it to new scroll
    */
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  /*const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     event.preventDefault();
     let newScrollY = scrollY;
     let newScrollX = scrollX;
@@ -362,7 +364,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
       setScrollY(newScrollY);
     }
     setIgnoreScrollEvent(true);
-  };
+  };*/
 
   /**
    * Task select event
@@ -385,6 +387,11 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   const handleExpanderClick = (task: Task) => {
     if (onExpanderClick && task.hideChildren !== undefined) {
       onExpanderClick({ ...task, hideChildren: !task.hideChildren });
+    }
+  };
+  const handleChangeTask = (e: object, task: Task) => {
+    if (onChangeTask) {
+      onChangeTask(e, task);
     }
   };
   const gridProps: GridProps = {
@@ -446,14 +453,14 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     taskListRef,
     setSelectedTask: handleSelectedTask,
     onExpanderClick: handleExpanderClick,
+    onChangeTask: handleChangeTask,
     TaskListHeader,
     TaskListTable,
   };
   return (
     <div>
       <div
-        className={styles.wrapper}
-        onKeyDown={handleKeyDown}
+        className={styles.wrapper}        
         tabIndex={0}
         ref={wrapperRef}
       >

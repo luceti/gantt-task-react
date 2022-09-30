@@ -19,6 +19,9 @@ export interface Task {
    * From 0 to 100
    */
   progress: number;
+  rh?: object[];
+  hw?: object[];
+  tag?: object[];
   styles?: {
     backgroundColor?: string;
     backgroundSelectedColor?: string;
@@ -71,6 +74,8 @@ export interface EventOption {
    * Invokes on expander on task list
    */
   onExpanderClick?: (task: Task) => void;
+
+  onChangeTask?: (e: object, task: Task) => void;
 }
 
 export interface DisplayOption {
@@ -136,6 +141,7 @@ export interface StylingOption {
      */
     setSelectedTask: (taskId: string) => void;
     onExpanderClick: (task: Task) => void;
+    onChangeTask: (e: object, task: Task) => void;
   }>;
 }
 

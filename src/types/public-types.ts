@@ -22,6 +22,7 @@ export interface Task {
   rh?: object[];
   hw?: object[];
   tag?: object[];
+  lineaBase?: { start?: Date; end?: Date; };
   styles?: {
     backgroundColor?: string;
     backgroundSelectedColor?: string;
@@ -87,6 +88,8 @@ export interface DisplayOption {
    */
   locale?: string;
   rtl?: boolean;
+  TooltipVisible?: boolean;
+  isDisiableProgrees?: boolean
 }
 
 export interface StylingOption {

@@ -149,7 +149,8 @@ const convertToBar = (
   barProgressColor: string,
   barProgressSelectedColor: string,
   barBackgroundColor: string,
-  barBackgroundSelectedColor: string
+  barBackgroundSelectedColor: string,
+  //barLineBaseColor: string
 ): BarTask => {
   let x1: number;
   let x2: number;

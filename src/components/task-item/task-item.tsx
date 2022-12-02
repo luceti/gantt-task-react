@@ -27,7 +27,6 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
   const {
     task,
     arrowIndent,
-    isDelete,
     taskHeight,
     isSelected,
     rtl,
@@ -81,16 +80,7 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
   };
 
   return (
-    <g
-      onKeyDown={e => {
-        switch (e.key) {
-          case "Delete": {
-            if (isDelete) onEventStart("delete", task, e);
-            break;
-          }
-        }
-        e.stopPropagation();
-      }}
+    <g      
       onMouseEnter={e => {
         onEventStart("mouseenter", task, e);
       }}

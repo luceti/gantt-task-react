@@ -22,7 +22,7 @@ export interface Task {
   rh?: object[];
   hw?: object[];
   tag?: object[];
-  lineaBase?: { start?: Date; end?: Date; };
+  lineaBase?: { start: Date; end: Date; };
   styles?: {
     backgroundColor?: string;
     backgroundSelectedColor?: string;

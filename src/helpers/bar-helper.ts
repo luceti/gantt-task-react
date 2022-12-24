@@ -174,6 +174,26 @@ const convertToBar = (
     rtl
   );
   const y = taskYCoordinate(index, rowHeight, taskHeight);
+
+  //LINEA BASE
+  let x1LB: number;
+  let x2LB: number;
+  if (rtl) {
+    x2LB = taskXCoordinateRTL((task.lineaBase)?task.lineaBase.start:task.start, dates, columnWidth);
+    x1LB = taskXCoordinateRTL((task.lineaBase)?task.lineaBase.end:task.end, dates, columnWidth);
+  } else {
+    x1LB = taskXCoordinate((task.lineaBase)?task.lineaBase.start:task.start, dates, columnWidth);
+    x2LB = taskXCoordinate((task.lineaBase)?task.lineaBase.end:task.end, dates, columnWidth);
+  }
+  
+  if (typeInternal === "task" && x2 - x1 < handleWidth * 2) {
+    typeInternal = "smalltask";
+    x2LB = x1 + handleWidth * 2;
+  }
+
+  const yLB = taskYCoordinate(index, rowHeight, taskHeight);
+  /////////////////////////////////
+
   const hideChildren = task.type === "project" ? task.hideChildren : undefined;
 
   const styles = {
@@ -189,6 +209,9 @@ const convertToBar = (
     x1,
     x2,
     y,
+    x1LB,
+    x2LB,
+    yLB,    
     index,
     progressX,
     progressWidth,
@@ -219,6 +242,14 @@ const convertToMilestone = (
   const x1 = x - taskHeight * 0.5;
   const x2 = x + taskHeight * 0.5;
 
+  //Para Linea Base
+  const xLB = taskXCoordinate((task.lineaBase)?task.lineaBase.start:task.start, dates, columnWidth);
+  const yLB = taskYCoordinate(index, rowHeight, taskHeight);
+
+  const x1LB = xLB - taskHeight * 0.5;
+  const x2LB = xLB + taskHeight * 0.5;
+  //////////////////////////
+
   const rotatedHeight = taskHeight / 1.414;
   const styles = {
     backgroundColor: milestoneBackgroundColor,
@@ -233,6 +264,9 @@ const convertToMilestone = (
     x1,
     x2,
     y,
+    x1LB,
+    x2LB,
+    yLB,
     index,
     progressX: 0,
     progressWidth: 0,

@@ -58,7 +58,7 @@ export const BarDisplay: React.FC<BarDisplayProps> = ({
         rx={barCornerRadius}
         fill={getBarColor()}
         className={style.barBackground}
-      />      
+      />
       <rect
         x={progressX}
         width={progressWidth}
@@ -68,16 +68,18 @@ export const BarDisplay: React.FC<BarDisplayProps> = ({
         rx={barCornerRadius}
         fill={getProcessColor()}
       />
-      {isBaseLine&&<rect
-        x={xLB}
-        width={widthLB}
-        y={yLB}
-        height='5'
-        ry={barCornerRadius}
-        rx={barCornerRadius}
-        fill='Green'
-        className={style.barBackground}
-      />}
+      {isBaseLine && (
+        <rect
+          x={xLB}
+          width={widthLB}
+          y={yLB}
+          height="15"
+          ry={barCornerRadius}
+          rx={barCornerRadius}
+          fill="Green"
+          className={style.barBackground}
+        />
+      )}
     </g>
   );
 };

@@ -83,15 +83,35 @@ export const Calendar: React.FC<CalendarProps> = ({
     for (let i = 0; i < dateSetup.dates.length; i++) {
       const date = dateSetup.dates[i];
       const bottomValue = getLocaleMonth(date, locale);
-      bottomValues.push(
-        <text
+      {
+        /*<text
           key={bottomValue + date.getFullYear()}
           y={headerHeight * 0.8}
           x={columnWidth * i + columnWidth * 0.5}
           className={styles.calendarBottomText}
         >
           {bottomValue}
-        </text>
+        </text>*/
+      }
+      bottomValues.push(
+        <view>
+          <text
+            key={bottomValue + date.getFullYear()}
+            y={headerHeight * 0.8}
+            x={columnWidth * i + columnWidth * 0.5}
+            className={styles.calendarBottomText}
+          >
+            {bottomValue}
+          </text>
+          <text
+            key={bottomValue + date.getFullYear() + "costo"}
+            y={headerHeight * 0.8}
+            x={columnWidth * i + columnWidth * 0.5}
+            className={styles.calendarBottomText}
+          >
+            $100.00
+          </text>
+        </view>
       );
       if (
         i === 0 ||
@@ -317,9 +337,9 @@ export const Calendar: React.FC<CalendarProps> = ({
       [topValues, bottomValues] = getCalendarValuesForYear();
       break;
     case ViewMode.Month:
-        [topValues, bottomValues] = getCalendarValuesForMonth();
-        break;
-      case ViewMode.Week:
+      [topValues, bottomValues] = getCalendarValuesForMonth();
+      break;
+    case ViewMode.Week:
       [topValues, bottomValues] = getCalendarValuesForWeek();
       break;
     case ViewMode.Day:
